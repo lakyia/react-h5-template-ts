@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 // https://vite.dev/config/
-export default defineConfig(() => {
+export default defineConfig(({ mode }) => {
   const nowDate = new Date()
   const buildTime = `${
     nowDate.getFullYear() +
@@ -59,7 +59,52 @@ export default defineConfig(() => {
       }
     },
     define: {
-      appInfos: JSON.stringify({ packTime, buildTime })
+      appInfos: JSON.stringify({ packTime, buildTime }),
+      'process.env.NODE_ENV': JSON.stringify(mode)
+    },
+    // 本地开发服务器配置
+    server: {
+      port: 3000, // 开发服务器端口
+      open: true, // 自动打开浏览器
+      host: '0.0.0.0', // 允许外部访问
+      proxy: {
+        // 代理配置示例
+        '/api': {
+          target: 'http://localhost:8080', // 后端API地址
+          changeOrigin: true, // 允许跨域
+          rewrite: path => path.replace(/^\/api/, '') // 重写路径
+        }
+      },
+      hmr: {
+        // 热更新配置
+        overlay: true, // 显示错误覆盖层
+        timeout: 3000, // 热更新超时时间
+        protocol: 'ws', // 热更新协议
+        host: 'localhost'
+      }
+    },
+    // 构建配置
+    build: {
+      sourcemap: mode === 'development', // 开发环境生成sourcemap
+      minify: mode === 'production' ? 'esbuild' : false, // 生产环境压缩代码
+      outDir: 'dist', // 输出目录
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            // 代码分割配置
+            react: ['react', 'react-dom'],
+            antd: ['antd-mobile'],
+            router: ['react-router', 'react-router-dom'],
+            state: ['zustand', 'immer']
+          }
+        }
+      }
+    },
+    // 预览服务器配置
+    preview: {
+      port: 3001, // 预览服务器端口
+      open: true, // 自动打开浏览器
+      host: '0.0.0.0' // 允许外部访问
     }
   }
 })
