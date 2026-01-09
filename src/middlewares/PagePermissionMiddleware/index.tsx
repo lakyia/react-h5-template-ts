@@ -12,9 +12,11 @@ const PagePermissionMiddleware = () => {
     console.log('执行 PagePermissionMiddleware')
     // 切换了路径，需要做鉴权 Loading 处理
     if (oldPathname !== location.pathname) {
-      setLoading(true)
+      // 使用setTimeout包装setLoading，避免同步调用导致级联渲染
+      setTimeout(() => setLoading(true), 0)
     }
-    setOldPathname(location.pathname)
+    // 使用setTimeout包装setOldPathname，避免同步调用导致级联渲染
+    setTimeout(() => setOldPathname(location.pathname), 0)
     setTimeout(() => {
       // 随机返回 0 或 1
       const authed = 1

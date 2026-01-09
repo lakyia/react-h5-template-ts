@@ -1,10 +1,10 @@
-{
-  "plugins": [
+export default {
+  plugins: [
     [
-      "import",
+      'import',
       {
-        "libraryName": "antd-mobile",
-        "style": "css"
+        libraryName: 'antd-mobile',
+        style: 'css'
       }
     ]
   ]
