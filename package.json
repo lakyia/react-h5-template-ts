@@ -1,0 +1,43 @@
+{
+  "name": "react-h5-template-ts",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "antd-mobile": "^5.41.0",
+    "axios": "^1.12.2",
+    "crypto-js": "^4.2.0",
+    "immer": "^10.1.1",
+    "keepalive-for-react": "^5.0.7",
+    "keepalive-for-react-router": "^5.0.7",
+    "lodash": "^4.17.21",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "react-router": "^7.10.1",
+    "react-router-dom": "^7.10.1",
+    "zustand": "^5.0.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/lodash": "^4.17.21",
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.5",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.1",
+    "babel-plugin-react-compiler": "^1.0.0",
+    "eslint": "^9.39.1",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.4.24",
+    "globals": "^16.5.0",
+    "less": "^4.5.1",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.46.4",
+    "vite": "^7.2.4"
+  }
+}
